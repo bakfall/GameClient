@@ -4,16 +4,31 @@
 		<meta charset="UTF-8">
 		<title>登录</title>
 		<link rel="stylesheet" type="text/css" href="css/game.css"/>
+		<script src="js/jquery-1.10.2.min.js" type="text/javascript" charset="utf-8"></script>
 	</head>
 	<body>
 		<div class="login-con">
-		<input type="text" name="" id="" value="" placeholder="请输入账户" />
-		<button onclick="goMain()">进入游戏</button>
+		<input type="text" name="" id="nickname" value="" placeholder="请输入账户" />
+		<button id="login">进入游戏</button>
 		</div>
 	</body>
 	<script type="text/javascript">
-		function goMain(){
-			window.location.href="Main.html"
-		}
+		var user = localStorage.getItem("user");
+		if(user){
+			window.location.href = "Main.html";
+			}
+		$("#login").click(function(){
+			$(function(){
+				var user = {
+				nickname : $("#nickname").val(),	
+				id : null,
+				win:0,
+				total:0,
+				status:0
+				};
+			localStorage.setItem("user",JSON.stringify(user));
+			window.location.href = "Main.html";	
+			})
+		})
 	</script>
 </html>
