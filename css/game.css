@@ -172,10 +172,11 @@ body,html{
 }
 .main-con .chat .body{
 	font-size: 23px;
-	height: 180px;
+	height: 120px;
+	overflow-y:scroll;
 }
 .main-con .chat .footer{
-	margin-top: 10px;
+	margin-top: 50px;
 	text-align: center;
 }
 .main-con .chat .head h2{
