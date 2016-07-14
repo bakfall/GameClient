@@ -101,7 +101,7 @@ body,html{
 .main-con .online .body table tr{
 	height: 30px;
 }
-#inputRoomNum{
+#inputRoomName{
 	position: absolute;
 	bottom: 50px;
 	left: 100px;
