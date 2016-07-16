@@ -59,7 +59,11 @@ function drawRect() {
 function drawArc() {
 	arc = $("#arcCan").get(0).getContext("2d");
 
+<<<<<<< 048c3a3c822eeba4d8719821fa173834b4244e82
 	arc.fillStyle = "white";
+=======
+	arc.fillStyle = "rgb(215,215,215)";
+>>>>>>> 716PM
 	arc.beginPath();
 	arc.arc(150, 150, 149, 0, 2 * Math.PI);
 	arc.fill();
@@ -83,13 +87,29 @@ function drawArc() {
 	line.stroke();
 	line.closePath();
 
+<<<<<<< 048c3a3c822eeba4d8719821fa173834b4244e82
 	arc.fillStyle = "white";
+=======
+	arc.fillStyle = "rgb(225,225,225)";
+>>>>>>> 716PM
 	arc.strokeStyle = "#000000";
 	arc.beginPath();
 	arc.arc(150, 150, 59, 2 * Math.PI, 0);
 	arc.fill();
 	arc.stroke();
 	arc.closePath();
+<<<<<<< 048c3a3c822eeba4d8719821fa173834b4244e82
+=======
+	
+	arc.fillStyle = "white";
+	arc.strokeStyle = "#000000";
+	arc.lineWidth = 3;
+	arc.beginPath();
+	arc.arc(150, 150, 30, 2 * Math.PI, 0);
+	arc.fill();
+	arc.stroke();
+	arc.closePath();
+>>>>>>> 716PM
 }
 
 function randomColor() {
@@ -99,6 +119,7 @@ function randomColor() {
 function drawOnCanvas() {
 	pen = $("#can").get(0).getContext("2d");
 	offset = $("#can").offset();
+<<<<<<< 048c3a3c822eeba4d8719821fa173834b4244e82
 
 	$("#can").mousedown(function(event) {
 		isdraw = true;
@@ -117,3 +138,145 @@ function drawOnCanvas() {
 		isdraw = false;
 	});
 }
+=======
+	curve();
+
+	$("#curve").click(function() {
+		curve();
+	});
+	$("#line").click(function() {
+		line();
+	});
+	$("#rect").click(function() {
+		rect();
+	});
+	$("#arc").click(function() {
+		arc();
+	});
+	$("#eraser").click(function() {
+		eraser();
+	})
+	$("#lineWidth").change(function(){
+		pen.lineWidth = $(this).val();
+	})
+	$("#color").change(function(){
+		pen.strokeStyle = $(this).val();
+	})
+	$("#save").click(function(){
+		var str = $("#can").get(0).toDataURL();
+		$("#img").val("<img src='"+ str + "'/>");
+	})
+	function curve() {
+		$("#can").unbind().mousedown(function(event) {
+			isdraw = true;
+			pen.beginPath();
+			pen.moveTo(event.clientX - offset.left, event.clientY - offset.top);
+		}).mousemove(function(event) {
+			if(isdraw) {
+				pen.lineTo(event.clientX - offset.left, event.clientY - offset.top);
+				pen.stroke();
+
+			}
+		}).mouseup(function(event) {
+			pen.closePath();
+			isdraw = false;
+		}).mouseleave(function(event) {
+			isdraw = false;
+		})
+	}
+
+	function line() {
+		$("#can").unbind().mousedown(function(event) {
+			isdraw = true;
+			pen.beginPath();
+			pen.moveTo(event.clientX - offset.left, event.clientY - offset.top);
+		}).mouseup(function(event) {
+			if(isdraw) {
+				pen.lineTo(event.clientX - offset.left, event.clientY - offset.top);
+				pen.stroke();
+				pen.closePath();
+			}
+		}).mouseleave(function(event) {
+			isdraw = false;
+		})
+	}
+
+	function rect() {
+		var x = y = 0;
+
+		$("#can").unbind().mousedown(function(event) {
+			isdraw = true;
+			pen.beginPath();
+			x = event.clientX - offset.left;
+			y = event.clientY - offset.top;
+		}).mouseup(function(event) {
+			if(isdraw) {
+				pen.rect(x, y, event.clientX - offset.left - x, event.clientY - offset.top - y);
+				pen.stroke();
+				pen.closePath();
+				isdraw = false;
+			}
+		}).mouseleave(function(event) {
+			isdraw = false;
+		})
+	}
+
+	function arc() {
+		var x = y = 0;
+
+		$("#can").unbind().mousedown(function(event) {
+			isdraw = true;
+			pen.beginPath();
+			x = event.clientX - offset.left;
+			y = event.clientY - offset.top;
+		}).mouseup(function(event) {
+			if(isdraw) {
+				var width = event.clientX - offset.left - x;
+				var height = event.clientY - offset.top - y;
+
+				width = width > height ? width : height;
+				pen.arc(x + width / 2, y + width / 2, Math.abs(width / 2), 0, 2 * Math.PI);
+				pen.stroke();
+				pen.closePath();
+			}
+			isdraw = false
+		}).mouseleave(function(event) {
+			isdraw = false;
+		})
+	}
+
+	function eraser() {
+		$("#can").unbind().mousedown(function(event){
+			isdraw = true;
+		}).mousemove(function( event ){
+			if(isdraw){
+				var width = pen.lineWidth * 10;
+				pen.clearRect(event.clientX - width / 2 - offset.left,event.clientY - width / 2 - offset.top,width,width);
+			}
+		}).mouseleave(function(){
+			isdraw = false;
+		});
+	}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+>>>>>>> 716PM
