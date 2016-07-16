@@ -59,11 +59,8 @@ function drawRect() {
 function drawArc() {
 	arc = $("#arcCan").get(0).getContext("2d");
 
-<<<<<<< 048c3a3c822eeba4d8719821fa173834b4244e82
 	arc.fillStyle = "white";
-=======
 	arc.fillStyle = "rgb(215,215,215)";
->>>>>>> 716PM
 	arc.beginPath();
 	arc.arc(150, 150, 149, 0, 2 * Math.PI);
 	arc.fill();
@@ -86,20 +83,14 @@ function drawArc() {
 	line.lineTo(295, 150);
 	line.stroke();
 	line.closePath();
-
-<<<<<<< 048c3a3c822eeba4d8719821fa173834b4244e82
 	arc.fillStyle = "white";
-=======
 	arc.fillStyle = "rgb(225,225,225)";
->>>>>>> 716PM
 	arc.strokeStyle = "#000000";
 	arc.beginPath();
 	arc.arc(150, 150, 59, 2 * Math.PI, 0);
 	arc.fill();
 	arc.stroke();
 	arc.closePath();
-<<<<<<< 048c3a3c822eeba4d8719821fa173834b4244e82
-=======
 	
 	arc.fillStyle = "white";
 	arc.strokeStyle = "#000000";
@@ -109,7 +100,6 @@ function drawArc() {
 	arc.fill();
 	arc.stroke();
 	arc.closePath();
->>>>>>> 716PM
 }
 
 function randomColor() {
@@ -119,7 +109,6 @@ function randomColor() {
 function drawOnCanvas() {
 	pen = $("#can").get(0).getContext("2d");
 	offset = $("#can").offset();
-<<<<<<< 048c3a3c822eeba4d8719821fa173834b4244e82
 
 	$("#can").mousedown(function(event) {
 		isdraw = true;
@@ -137,10 +126,6 @@ function drawOnCanvas() {
 	$("#can").mouseleave(function(event) {
 		isdraw = false;
 	});
-}
-=======
-	curve();
-
 	$("#curve").click(function() {
 		curve();
 	});
@@ -258,25 +243,3 @@ function drawOnCanvas() {
 		});
 	}
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
->>>>>>> 716PM
