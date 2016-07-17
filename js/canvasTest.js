@@ -149,7 +149,9 @@ function drawOnCanvas() {
 	})
 	$("#save").click(function(){
 		var str = $("#can").get(0).toDataURL();
-		$("#img").val("<img src='"+ str + "'/>");
+		var html = "<img src='"+str+"'/>";
+		$("#img").empty();
+		$("#img").append(html);
 	})
 	function curve() {
 		$("#can").unbind().mousedown(function(event) {
