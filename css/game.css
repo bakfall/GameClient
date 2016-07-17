@@ -234,3 +234,11 @@ body,html{
 	color: red;
 	transform:  scale(1.2);
 }
+.game{
+	position: absolute;
+	text-align: center;
+}
+.game canvas{
+	margin: auto;
+	background-color: palegoldenrod;
+}
