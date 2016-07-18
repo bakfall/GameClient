@@ -63,7 +63,7 @@
 	<script type="text/javascript">
 		var user = null;
 		var socket = io('http://localhost:3000', {
-			reconnect: false,
+			reconnection: false,
 			autoConnect: false
 		});
 		$(function() {
@@ -182,7 +182,7 @@
 			var html = "";
 			html += "玩家一:" + room.play1.nickname + "&nbsp;胜场:" + room.play1.win + "<br>PK<br>";
 			if(room.play2) {
-				html += "玩家一:" + room.play2.nickname + "&nbsp;胜场:" + room.play2.win;
+				html += "玩家二:" + room.play2.nickname + "&nbsp;胜场:" + room.play2.win;
 			}
 			if(iscreate) {
 				html += "<button id ='startGame'>开始游戏</button>";
@@ -191,10 +191,10 @@
 			$(".room .body").html(html);
 			$("#startGame").click(function(){
 				socket.emit("game.start");
-			})
+			});
 			$("#exitRoom").click(function(){
-				
-			})
+				socket.emit("game.exit");
+			});
 		}
 
 		function showChat(chat, isme) {
@@ -203,8 +203,6 @@
 			} else {
 				$(".chat .body ul").append("<li >" + chat.nickname + ":" + chat.msg + "</li>");
 			}
-			
-			$(".chat .body ul").scrollTo($(".chat .body ul").height());
 		}
 
 	</script>
