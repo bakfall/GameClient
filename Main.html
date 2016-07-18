@@ -41,7 +41,7 @@
 				<div class="head">
 					<h2>聊天信息</h2>
 				</div>
-				<div class="body">
+				<div class="body" id = "msgwall">
 					<p id="time1">01:12</p>
 					<ul>
 
@@ -76,10 +76,11 @@
 			}
 			socket.open();
 			socket.on('connect', function() {
+				user = JSON.parse(localStorage.getItem("user"));
 				user.id = socket.id;
 				user.status = 1;
-				socket.emit("user.online", user);
 				initUser(user);
+				socket.emit("user.online", user);
 			})
 			socket.on("user.online", function(users) {
 				initOnline(users);
@@ -108,7 +109,13 @@
 			socket.on("game.changedata",function(data){
 				drawOpponentChessmen(data.row,data.col,data.player);
 				status = "run"
-			})
+			});
+			socket.on("game.over",function(user){
+				//清除棋盘
+				$("#game").html("");
+				initUser(user);
+				data = [];//初始化数组 初始化数组
+			});
 			
 			$("#sentMsg").click(function() {
 				var chat = {
@@ -125,8 +132,10 @@
 		});
 
 		function initUser(user) {
-			$(".userinfo h1").html(user.nickname).next().html("ID" + user.id)
-				.next().html("胜场" + user.win + "胜率" + (user.total ? user.win / user.total : 0) + "%");
+
+			$(".userinfo h1").html(user.nickname).next().
+				html("ID" + user.id).next().
+				html("胜场" + user.win + "胜率" + (user.total ? user.win / user.total : 0)*100	 + "%");
 		}
 
 		function initOnline(users) {
@@ -194,6 +203,8 @@
 			} else {
 				$(".chat .body ul").append("<li >" + chat.nickname + ":" + chat.msg + "</li>");
 			}
+			
+			$(".chat .body ul").scrollTo($(".chat .body ul").height());
 		}
 
 	</script>
